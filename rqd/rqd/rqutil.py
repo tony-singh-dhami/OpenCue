@@ -39,7 +39,7 @@ import threading
 
 import rqconstants
 
-if platform.system() == 'Linux":
+if platform.system() == 'Linux':
     import crypt
     import grp
     import pwd
