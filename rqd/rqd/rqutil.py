@@ -26,12 +26,9 @@ Contact: Middle-Tier
 SVN: $Id$
 """
 
-import crypt
 import functools
-import grp
 import os
 import platform
-import pwd
 import random
 import socket
 import subprocess
