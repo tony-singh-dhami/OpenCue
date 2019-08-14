@@ -39,8 +39,13 @@ import threading
 
 import rqconstants
 
+if platform.system() == 'Linux":
+    import crypt
+    import grp
+    import pwd
+    HIGH_PERMISSION_GROUPS = os.getgroups()
+
 PERMISSIONS = threading.Lock()
-HIGH_PERMISSION_GROUPS = os.getgroups()
 
 
 class Memoize(object):
@@ -121,6 +126,7 @@ def __becomeRoot():
 def checkAndCreateUser(username):
     """Check to see if the provided user exists, if not attempt to create it."""
     # TODO(gregdenton): Add Windows and Mac support here. (Issue #61)
+    # (tony-singh-dhami): This function is only called during Linux execution. Need to detemine if this functionality is needed during windows runtime
     try:
         pwd.getpwnam(username)
         return
