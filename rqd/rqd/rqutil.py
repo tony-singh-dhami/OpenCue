@@ -40,6 +40,7 @@ if platform.system() == 'Linux':
     import crypt
     import grp
     import pwd
+    # getgroups() works only in linux enviro. Need to determine if equivallent needed in windows.
     HIGH_PERMISSION_GROUPS = os.getgroups()
 
 PERMISSIONS = threading.Lock()
