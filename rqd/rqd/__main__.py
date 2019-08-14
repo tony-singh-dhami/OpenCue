@@ -104,10 +104,13 @@ def setupLogging():
     fileLevel     = log.WARNING # Equal to or greater than the consoleLevel
 
     log.basicConfig(level=consoleLevel, format=consoleFormat)
-    try:
-        logfile = SysLogHandler(address='/dev/log')
-    except socket.error:
-        logfile = SysLogHandler()
+    if platform.system() == 'Linux':
+      try:
+          logfile = SysLogHandler(address='/dev/log')
+      except socket.error:
+          logfile = SysLogHandler()
+    if platform.system() == 'Windows':
+      logfile = SysLogHandler()
     logfile.setLevel(fileLevel)
     logfile.setFormatter(log.Formatter(fileFormat))
     log.getLogger('').addHandler(logfile)
